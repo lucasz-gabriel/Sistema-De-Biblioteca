@@ -24,8 +24,9 @@ public class Book {
             if (!book.isEmpty()){
                 MemoryBookList.add(book);
                 BookList.addElement(book);
+                JOptionPane.showMessageDialog(frame, "Novo livro adicionado");
             } else{
-                JOptionPane.showMessageDialog(frame, "Nada foi adicionado!");
+                JOptionPane.showMessageDialog(frame, "Nenhum livro foi adicionado foi adicionado!");
             }
         });
         JButton button2 = new JButton("Modificar");
@@ -36,6 +37,7 @@ public class Book {
             if (index != -1 && !NewName.isEmpty()) {
                 MemoryBookList.set(index, NewName);
                 BookList.set(index, NewName);
+                JOptionPane.showMessageDialog(frame, "Livro substituído!");
             } else if (index == -1){
                 JOptionPane.showMessageDialog(frame, "Selecione um livro para modificá-lo!");
             } else{

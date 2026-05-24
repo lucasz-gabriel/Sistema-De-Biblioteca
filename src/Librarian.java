@@ -72,7 +72,6 @@ public class Librarian {
         JPanel panel = new JPanel();
 
 
-
         frame.add(button);
         frame.add(button2);
         frame.add(button3);
@@ -81,6 +80,7 @@ public class Librarian {
         frame.add(scroll);
         frame.add(panel);
         frame.add(text);
+
 
         frame.setSize(1000, 1000);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
