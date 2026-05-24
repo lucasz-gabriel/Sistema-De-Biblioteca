@@ -56,6 +56,16 @@ public class Book {
         });
         JButton button4 = new JButton("Pesquisar");
         button4.setBounds(220,200,100,60);
+        button4.addActionListener(e -> {
+            String book = text.getText().trim();
+            if (MemoryBookList.contains(book)){
+                int index = MemoryBookList.indexOf(book);
+                list.setSelectedIndex(index);
+                JOptionPane.showMessageDialog(frame,"Livro encontrado!");
+            } else {
+                JOptionPane.showMessageDialog(frame,"Nâo possuimos esse livro");
+            }
+        });
 
         JPanel panel = new JPanel();
 
