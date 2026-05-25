@@ -6,10 +6,10 @@ public class Book {
 
         frame.setLayout(null);
 
-        ArrayList<String> MemoryBookList = new ArrayList<String>();
-        DefaultListModel<String> BookList = new DefaultListModel<String>();
-        JList<String> list = new JList<String>(BookList);
-        JScrollPane scroll = new JScrollPane(list);
+        ArrayList<String> MemoryBookList = new ArrayList<String>(); //ArrayList - Lista de armazenamento na memoria
+        DefaultListModel<String> BookList = new DefaultListModel<String>(); //Ponte entre a lista salva na memoria e a lista exposta ao usuário
+        JList<String> list = new JList<String>(BookList); //Lista exposta
+        JScrollPane scroll = new JScrollPane(list); //Garante a lista montada corretamente
         scroll.setBounds(100,280,300,200);
 
 
