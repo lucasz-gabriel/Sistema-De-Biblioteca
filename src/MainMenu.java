@@ -1,5 +1,3 @@
-package POO;
-
 import javax.swing.*;
 import java.awt.*;
 
