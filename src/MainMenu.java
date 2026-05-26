@@ -8,7 +8,6 @@ public class MainMenu {
 
         JFrame mainMenu = new JFrame("Alexandria do Manfrine — Menu principal");
 
-        // Instancia uma vez só aqui
         Book bookScreen = new Book();
         Employee employeeScreen = new Employee();
         Readers readerScreen = new Readers();
