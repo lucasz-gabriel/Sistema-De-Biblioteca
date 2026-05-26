@@ -3,6 +3,7 @@ package POO;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class MainMenu {
     public MainMenu() {
 
@@ -11,20 +12,27 @@ public class MainMenu {
         Label introduction = new Label("Este é o menu principal da Alexandria do Manfrine." +
                 " Por favor, selecione o registro desejado:");
 
+        introduction.setFont(new Font("Comic Sans", Font.BOLD,20));
         JRadioButton bookButton = new JRadioButton("Registro de livros");
-        JRadioButton employeeButton = new JRadioButton("Registro de Funcionários");
-        JRadioButton borrowerButton = new JRadioButton("Registro de Sócio");
+        bookButton.setBackground(Color.LIGHT_GRAY);
+        bookButton.setFont(new Font("Comic Sans", Font.BOLD,16));
+        JRadioButton employeeButton = new JRadioButton("Registro de funcionários");
+        employeeButton.setBackground(Color.LIGHT_GRAY);
+        employeeButton.setFont(new Font("Comic Sans", Font.BOLD,16));
+        JRadioButton borrowerButton = new JRadioButton("Registro de leitores");
+        borrowerButton.setBackground(Color.LIGHT_GRAY);
+        borrowerButton.setFont(new Font("Comic Sans", Font.BOLD,16));
 
         ButtonGroup group = new ButtonGroup();
         group.add(bookButton);
         group.add(employeeButton);
         group.add(borrowerButton);
 
-        mainMenu.setLayout(new FlowLayout());
+        mainMenu.setLayout(new GridLayout(0, 1));
         mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainMenu.setResizable(true);
+        mainMenu.setResizable(false);
         mainMenu.getContentPane().add(introduction, BorderLayout.CENTER);
-
+        mainMenu.getContentPane().setBackground(Color.LIGHT_GRAY);
         mainMenu.setIconImage(new ImageIcon("images/manfrine-sorrindo.png").getImage());
 
         mainMenu.add(bookButton);
@@ -34,11 +42,14 @@ public class MainMenu {
         JButton confirmButton = new JButton("Confirmar");
         mainMenu.add(confirmButton);
 
+//THE ACTION LISTENER CHECKS WHICH BUTTON IS SELECTED AT THE TIME OF PRESSING
+//"CONFIRMAR" AND DEPENDING ON WHICH IS SELECTED IT INSTANTIATES ITS CLASS.
+
         confirmButton.addActionListener(e -> {
             if(bookButton.isSelected()){
                 new Book();
             } else if (employeeButton.isSelected()){
-                new Librarian();
+                new Readers();
             } else if (borrowerButton.isSelected()){
                 new Readers();
             } else {

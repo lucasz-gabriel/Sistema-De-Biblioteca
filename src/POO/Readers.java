@@ -2,15 +2,19 @@ package POO;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.awt.*;
 public class Readers {
     public Readers() {
-        JFrame frame = new JFrame("Cadastro de leitores");
-
+        JFrame frame = new JFrame("Alexandria do Manfrine — Registro de funcionários");
         frame.setLayout(null);
 
-        ArrayList<String> MemoryReaders = new ArrayList<String>();
-        DefaultListModel<String> BookReaders = new DefaultListModel<String>();
-        JList<String> list = new JList<String>(BookReaders);
+        JPanel panel = new JPanel();
+        panel.setBounds(0,0,600,600);
+        panel.setBackground(Color.LIGHT_GRAY);
+
+        ArrayList<String> MemoryReaderList = new ArrayList<String>();
+        DefaultListModel<String> ReaderList = new DefaultListModel<String>();
+        JList<String> list = new JList<String>(ReaderList);
         JScrollPane scroll = new JScrollPane(list);
         scroll.setBounds(100, 280, 300, 200);
 
@@ -19,73 +23,65 @@ public class Readers {
         text.setEditable(true);
         text.setBounds(100, 100, 300, 30);
 
-        JButton button = new JButton("Cadastrar");
-        button.setBounds(100, 140, 100, 60);
-        button.addActionListener(e -> {
-            String employeer = text.getText().trim();
-            if (!employeer.isEmpty()) {
-                MemoryReaders.add(employeer);
-                BookReaders.addElement(employeer);
-                JOptionPane.showMessageDialog(frame, "Novo leitor cadastrado!");
-            } else {
-                JOptionPane.showMessageDialog(frame, "Nenhum leitor cadastrado!");
+
+//HERE BEGINS THE CREATION OF THE COMBO-BOX USED TO SELECT WHICH
+//OPTION IN THE REGISTRY THE USER WILL BE MAKING USE OF.
+
+        String[] options = {"Cadastrar", "Modificar", "Excluir", "Pesquisar"};
+        JComboBox box = new JComboBox(options);
+        JButton confirmButton = new JButton("Confirmar");
+        panel.add(box);
+        panel.add(confirmButton);
+
+        confirmButton.addActionListener(e -> {
+            if(box.getSelectedItem().equals("Cadastrar")){
+                String book = text.getText().trim();
+                if (!book.isEmpty()) {
+                    MemoryReaderList.add(book);
+                    ReaderList.addElement(book);
+                    JOptionPane.showMessageDialog(frame, "Novo leitor adicionado.");
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Preencha com algum leitor antes.");
+                }
+            }else if (box.getSelectedItem().equals("Modificar")) {
+                int index = list.getSelectedIndex();
+                String NewName = text.getText().trim();
+                if (index != -1 && !NewName.isEmpty()) {
+                    MemoryReaderList.set(index, NewName);
+                    ReaderList.set(index, NewName);
+                    JOptionPane.showMessageDialog(frame, "Leitor substituído!");
+                } else if (index == -1) {
+                    JOptionPane.showMessageDialog(frame, "Selecione um leitor para modificá-lo.");
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Digite um novo nome para este leitor.");
+                }
+            }else if (box.getSelectedItem().equals("Excluir")) {
+                int index = list.getSelectedIndex();
+                if (index != -1) {
+                    MemoryReaderList.remove(index);
+                    ReaderList.remove(index);
+                    JOptionPane.showMessageDialog(frame, "Leitor excluido!");
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Selecione um leitor para excluí-lo.");
+                }
+            }else if (box.getSelectedItem().equals("Pesquisar")) {
+                String book = text.getText().trim();
+                if (MemoryReaderList.contains(book)) {
+                    int index = MemoryReaderList.indexOf(book);
+                    list.setSelectedIndex(index);
+                    JOptionPane.showMessageDialog(frame, "Leitor encontrado!");
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Não possuimos esse leitor.");
+                }
             }
         });
-        JButton button2 = new JButton("Modificar");
-        button2.setBounds(220, 140, 100, 60);
-        button2.addActionListener(e -> {
-            int index = list.getSelectedIndex();
-            String NewName = text.getText().trim();
-            if (index != -1 && !NewName.isEmpty()) {
-                MemoryReaders.set(index, NewName);
-                BookReaders.set(index, NewName);
-                JOptionPane.showMessageDialog(frame, "Leitor substituído!");
-            } else if (index == -1) {
-                JOptionPane.showMessageDialog(frame, "Selecione um leitor para modificá-lo!");
-            } else {
-                JOptionPane.showMessageDialog(frame, "Qual o nome do novo leitor?");
-            }
-        });
-        JButton button3 = new JButton("Excluir");
-        button3.setBounds(100, 200, 100, 60);
-        button3.addActionListener(e -> {
-            int index = list.getSelectedIndex();
-            if (index != -1) {
-                MemoryReaders.remove(index);
-                BookReaders.remove(index);
-                JOptionPane.showMessageDialog(frame, "Livro devolvido!");
-            } else {
-                JOptionPane.showMessageDialog(frame, "Selecione o leitor que devolveu o livro!");
-            }
-        });
-        JButton button4 = new JButton("Pesquisar");
-        button4.setBounds(220, 200, 100, 60);
-        button4.addActionListener(e -> {
-            String book = text.getText().trim();
-            if (MemoryReaders.contains(book)) {
-                int index = MemoryReaders.indexOf(book);
-                list.setSelectedIndex(index);
-                JOptionPane.showMessageDialog(frame, "Leitor encontrado!");
-            } else {
-                JOptionPane.showMessageDialog(frame, "Essa pessoa não tem livros alugados!");
-            }
-        });
-
-        JPanel panel = new JPanel();
-
-
-        frame.add(button);
-        frame.add(button2);
-        frame.add(button3);
-        frame.add(button4);
-
         frame.add(scroll);
-        frame.add(panel);
         frame.add(text);
+        frame.add(panel);
 
-
-        frame.setSize(1000, 1000);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(600,600);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setVisible(true);
     }
 }
