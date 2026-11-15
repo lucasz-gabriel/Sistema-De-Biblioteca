@@ -97,7 +97,7 @@ cd Biblioteca-de-Alexandria-do-Manfrine
 
 ## 👥 Autores
 
-- **Lucas Roque** · [GitHub]((https://github.com/lucasz-gabriel))
-- **Ítalo Pereira** · [GitHub]((https://github.com/Italo-P))
+- **Lucas Roque** · [GitHub](https://github.com/lucasz-gabriel)
+- **Ítalo Pereira** · [GitHub](https://github.com/Italo-P)
 
 Apresentação: **Paulo Gabriel**
